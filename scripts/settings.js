@@ -1,3 +1,23 @@
+async function notifyIfPathHasIssues(directoryPath){
+	
+	let files;
+	try{
+	    files = (await FilePicker.browse("data", directoryPath)).files
+	}
+	catch(error){
+	    ui.notifications.warn(error);
+	    console.warn(error);
+	    return;
+	}
+
+	if( !files.some(AudioHelper.hasAudioExtension) ){
+		let warning = `Directory ${directoryPath} does not contain any audio files usable by Foundry.`;
+		ui.notifications.warn(warning);
+		console.warn(warning);
+	}
+	
+}
+
 export const criticalSoundsSettings = function ( ) {
 
 	game.settings.register("critical-sounds", "critSuccessDirectory", {
@@ -5,7 +25,8 @@ export const criticalSoundsSettings = function ( ) {
 		hint: "The path from inside Foundry's Data folder to the directory containing the sound-effects for critical successes.",
 		scope: "world",
 		config: true,
-		type: String
+		type: String,
+		onChange: notifyIfPathHasIssues
 	});
 
 	game.settings.register("critical-sounds", "critFailureDirectory", {
@@ -13,7 +34,8 @@ export const criticalSoundsSettings = function ( ) {
 		hint: "The path from inside Foundry's Data folder to the directory containing the sound-effects for critical failures.",
 		scope: "world",
 		config: true,
-		type: String
+		type: String,
+		onChange: notifyIfPathHasIssues
 	});
 
 	game.settings.register("critical-sounds", "isBroadcastActiveForUser", {

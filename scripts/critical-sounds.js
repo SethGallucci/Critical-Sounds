@@ -17,21 +17,43 @@ Hooks.on("init", () => {
 		}
 
 		let keptRolls = attackRolls.entries.filter(e => !e.ignored);
+		
+		//non-crits have a critType of null
 		let rollsAsCriticalTypes = keptRolls.map(r => r.critType);
-		let firstKeptRoll = rollsAsCriticalTypes[0];
-
         
-        if( firstKeptRoll != null ){
-        	let soundDirectory = game.settings.get("critical-sounds", firstKeptRoll === "success" ? "critSuccessDirectory" : "critFailureDirectory");
-        	let fileList = (await FilePicker.browse("data", soundDirectory)).files;
-        	let randomFile = fileList[Math.floor(Math.random()*fileList.length)];
-        	
-        	game.socket.emit("module.critical-sounds", {
-				soundFile: randomFile
-			});
-			if( game.settings.get("critical-sounds", "isAudioActiveForUser") ){
-				AudioHelper.play({src: randomFile});
-	        }
+		if( rollsAsCriticalTypes[0] === null ){
+			return;
+		}
+
+    	let soundDirectory = game.settings.get("critical-sounds", rollsAsCriticalTypes[0] === "success" ? "critSuccessDirectory" : "critFailureDirectory");
+
+    	let files;
+		try{
+		    files = (await FilePicker.browse("data", soundDirectory)).files
+		}
+		catch(error){
+		    ui.notifications.warn(error);
+		    console.warn(error);
+		    return;
+		}
+
+		let audioFiles = files.filter(f => AudioHelper.hasAudioExtension(f));
+
+		if( audioFiles.length < 1 ){
+			let warning = `Directory ${directoryPath} does not contain any audio files usable by Foundry.`;
+			ui.notifications.warn(warning);
+			console.warn(warning);
+			return;
+		}
+
+    	let randomFile = audioFiles[Math.floor(Math.random()*audioFiles.length)];
+    	
+    	game.socket.emit("module.critical-sounds", {
+			soundFile: randomFile
+		});
+
+		if( game.settings.get("critical-sounds", "isAudioActiveForUser") ){
+			AudioHelper.play({src: randomFile});
         }
 	});
 
