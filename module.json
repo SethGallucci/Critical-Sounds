@@ -3,7 +3,7 @@
 	"title": "Critical Sounds",
 	"description": "Add sound-effects to critical attack rolls.",
 	"author": "Seth Gallucci",
-	"version": "0.0.1",
+	"version": "0.2.0",
 	"minimumCoreVersion": "0.7.9",
 	"compatibleCoreVersion": "9",
 	"esmodules": [
