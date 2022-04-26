@@ -6,12 +6,12 @@
 
 **Step 1** - Sound-Clip Directories
 
-Create or choose two existing directories located somewhere in your Foundry *Data* folder; one directory for critical successes and the other for critical failures. Enter the paths for these directories into their respective text fields in the module settings.
+Create or choose two directories located somewhere in your Foundry *Data* folder; one directory for critical successes and the other for critical failures. Enter the paths for these directories into their respective text fields in the module settings.
 
 
 **Step 2** - Add Sound Clips
 
-Gather your own critical-success and critical-failure sound clips and add them to their respective directories from step 1. Be sure that the sound clips are of a format that Foundry can use. Foundry supports commonly used files types and then some more. For a list of audio-file types supported by Foundry, the expression `CONST.AUDIO_FILE_EXTENSIONS;` can be entered into the console of the Foundry application or a connected client.
+Gather your own critical-success and critical-failure sound clips and add them to their respective directories from step 1. Be sure that the sound clips are of a format that Foundry can use. Foundry supports commonly used files types and then some more. For a list of audio-file types supported by Foundry, the expression `CONST.AUDIO_FILE_EXTENSIONS` can be entered into the console of the Foundry application or a connected client.
 
 
 ### Desired Improvements
