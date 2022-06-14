@@ -4,7 +4,7 @@
 	"description": "Add sound-effects to critical attack rolls.",
 	"author": "Seth Gallucci",
 	"version": "0.2.0",
-	"minimumCoreVersion": "0.7.9",
+	"minimumCoreVersion": "9",
 	"compatibleCoreVersion": "9",
 	"esmodules": [
 		"scripts/critical-sounds.js"
@@ -15,6 +15,12 @@
 		{
 			"name": "betterrolls5e",
 			"manifest": "https://raw.githubusercontent.com/RedReign/FoundryVTT-BetterRolls5e/master/betterrolls5e/module.json"
-		}
-	]
+		},
+	],
+    "url": "https://github.com/SethGallucci/Critical-Sounds",
+    "manifest": "https://github.com/SethGallucci/Critical-Sounds/releases/latest/download/manifest.json",
+    "download": "https://github.com/SethGallucci/Critical-Sounds/releases/latest/download/module.zip",
+    "readme": "https://github.com/SethGallucci/Critical-Sounds/blob/main/module.json"
 }
+
+
